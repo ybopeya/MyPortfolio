@@ -1,38 +1,67 @@
 /* =====================================================================
    Yohali Bopeya — portfolio
    Single-page stylesheet
-   Sections: 1.Tokens 2.Base 3.Type 4.Layout 5.Nav 6.Hero
-             7.About+Skills 8.Cards 9.Blog 10.Footer 11.Motion 12.Responsive
+
+   TABLE OF CONTENTS
+   1.  Tokens
+   2.  Base / Reset
+   3.  Typography
+   4.  Layout Helpers
+   5.  Navigation (menu button + sidebar + scrim)
+   6.  Hero (#home)
+   7.  About + Skills (#about)
+   8.  Experience Accordion (.exp-item)
+   9.  Cards (experience + projects)
+   10. Blog
+   11. Footer
+   12. Motion (reveal-on-scroll)
+   13. Responsive Overrides
+   14. Floral Accents
    ===================================================================== */
 
-/* 1. TOKENS ----------------------------------------------------------- */
-:root {
-    --bg:          #e9e2d3;   /* page background          */
-    --surface:     #d1cbbc;   /* cards, sidebar           */
-    --ink:         #757165;   /* body text + borders      */
-    --ink-strong:  #4d4737;   /* emphasis / hover         */
+
+/* =====================================================================
+   1. TOKENS
+   ===================================================================== */
+   :root {
+    /* -- colors -- */
+    --bg:          #f5e8fd;   /* page background      */
+    --surface:     #efe1f9;   /* cards, sidebar        */
+    --ink:         #5c416e;   /* body text + borders   */
+    --ink-strong:  rgb(39, 30, 46); /* emphasis / hover */
     --white:       #ffffff;
   
+    /* -- borders -- */
     --line: 2px solid var(--ink);
   
+    /* -- fonts -- */
     --font-display: 'Ramaraja', serif;
     --font-body:    'IBM Plex Mono', monospace;
   
+    /* -- layout -- */
     --container: 1100px;
     --pad-x: clamp(1.25rem, 5vw, 4rem);
   
+    /* -- misc -- */
     --radius: 4px;
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  /* 2. BASE ------------------------------------------------------------- */
-  *, *::before, *::after { box-sizing: border-box; }
   
-  html { scroll-behavior: smooth; }
+  /* =====================================================================
+     2. BASE / RESET
+     ===================================================================== */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
   
   body {
-    text-transform: lowercase;
     margin: 0;
+    text-transform: lowercase;
     background-color: var(--bg);
     color: var(--ink);
     font-family: var(--font-body);
@@ -41,9 +70,14 @@
     -webkit-font-smoothing: antialiased;
   }
   
-  img { max-width: 100%; display: block; }
+  img {
+    max-width: 100%;
+    display: block;
+  }
   
-  a { color: inherit; }
+  a {
+    color: inherit;
+  }
   
   :focus-visible {
     outline: 2px solid var(--ink-strong);
@@ -51,13 +85,17 @@
     border-radius: 2px;
   }
   
-  /* 3. TYPOGRAPHY ------------------------------------------------------- */
+  
+  /* =====================================================================
+     3. TYPOGRAPHY
+     ===================================================================== */
   h1, h2 {
     font-family: var(--font-display);
     font-weight: 400;
     text-align: center;
     margin: 0;
   }
+  
   h3, h4 {
     font-family: var(--font-body);
     font-weight: 400;
@@ -69,19 +107,26 @@
   h3 { font-size: 1.125rem; line-height: 1.7; }
   h4 { font-size: 1rem; }
   
-  .italicized { font-style: italic; }
+  .italicized {
+    font-style: italic;
+  }
   
-  /* 4. LAYOUT ----------------------------------------------------------- */
+  
+  /* =====================================================================
+     4. LAYOUT HELPERS
+     ===================================================================== */
   .page-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
   
-  main { flex: 1; }
+  main {
+    flex: 1;
+  }
   
   .section {
-    scroll-margin-top: 2rem;            /* so anchors don't sit at the very edge */
+    scroll-margin-top: 2rem; /* keeps anchor links from landing flush at the edge */
     padding: clamp(3rem, 7vw, 5.5rem) var(--pad-x);
   }
   
@@ -91,19 +136,28 @@
     margin-inline: auto;
   }
   
-  /* Section title with the underline rule you were using */
+  /* boxed heading used at the top of every section */
   .section-title {
-    border: var(--line);
-    padding: 0.7rem 1rem 0.4rem;   /* top  sides  bottom */
+    /* border: var(--line); */ /* disabled — currently borderless */
+    padding: 0.7rem 1rem 0.4rem;   /* top / sides / bottom */
     margin-bottom: clamp(2rem, 5vw, 3rem);
-    background: var(--surface);
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .section-title h1 { margin: 0; padding: 0; line-height: 1; }
   
-  /* 5. NAVIGATION ------------------------------------------------------- */
+  .section-title h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  
+  /* =====================================================================
+     5. NAVIGATION
+     ===================================================================== */
+  
+  /* -- hamburger button -- */
   .menu-btn {
     position: fixed;
     top: 20px;
@@ -116,6 +170,7 @@
     cursor: pointer;
     z-index: 1001;
   }
+  
   .menu-btn span {
     display: block;
     height: 3px;
@@ -125,11 +180,13 @@
     border-radius: 2px;
     transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
   }
-  /* hamburger → X when the sidebar is open */
+  
+  /* hamburger → X when sidebar is open */
   .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
   .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
   
+  /* -- sidebar panel -- */
   .sidebar {
     position: fixed;
     top: 0;
@@ -144,7 +201,10 @@
     transition: left 0.3s var(--ease);
     z-index: 1000;
   }
-  .sidebar.open { left: 0; }
+  
+  .sidebar.open {
+    left: 0;
+  }
   
   .sidebar a {
     padding: 14px 26px;
@@ -152,16 +212,23 @@
     text-decoration: none;
     font-size: 1.05rem;
     border-left: 3px solid transparent;
-    transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      background 0.2s var(--ease);
   }
-  .sidebar a:hover { color: var(--ink-strong); }
+  
+  .sidebar a:hover {
+    color: var(--ink-strong);
+  }
+  
   .sidebar a.active {
     color: var(--ink-strong);
     border-left-color: var(--ink-strong);
     background: rgba(0, 0, 0, 0.04);
   }
   
-  /* dim the page when the menu is open (click to close) */
+  /* -- click-anywhere-to-close overlay -- */
   .scrim {
     position: fixed;
     inset: 0;
@@ -171,9 +238,16 @@
     transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
     z-index: 999;
   }
-  .scrim.show { opacity: 1; visibility: visible; }
   
-  /* 6. HERO ------------------------------------------------------------- */
+  .scrim.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  
+  /* =====================================================================
+     6. HERO (#home)
+     ===================================================================== */
   #home {
     min-height: 100vh;
     display: flex;
@@ -183,12 +257,17 @@
     text-align: center;
     gap: 2rem;
   }
+  
   #home h1 {
     font-size: clamp(1.8rem, 5vw, 3rem);
-    min-height: 1.2em;                  /* stops layout jump while typing */
+    min-height: 1.2em; /* stops layout jump while typed.js types */
   }
+  
   /* blinking caret from typed.js */
-  .typed-cursor { font-weight: 400; color: var(--ink); }
+  .typed-cursor {
+    font-weight: 400;
+    color: var(--ink);
+  }
   
   .home-img {
     width: min(400px, 80%);
@@ -201,6 +280,7 @@
     max-width: 640px;
     margin-inline: auto;
   }
+  
   #quote h2 {
     font-style: italic;
     color: var(--ink);
@@ -208,34 +288,60 @@
     line-height: 1.5;
   }
   
-  /* 7. ABOUT + SKILLS --------------------------------------------------- */
+  
+  /* =====================================================================
+     7. ABOUT + SKILLS (#about)
+     ===================================================================== */
+  #about, #skills {
+    padding-top:0;
+    padding-bottom: 1.5rem; /* tighter gap before the next section */
+  }
+  
   .about-text {
     max-width: 760px;
     margin-inline: auto;
     text-align: center;
   }
-  .about-text h3 { font-weight: 400; }
   
-  .skills-group { margin-top: 3rem; }
-  .skills-group + .skills-group { margin-top: 2.5rem; }
+  .about-text h3 {
+    font-weight: 400;
+  }
+  .about-text h2 {
+    font-weight: 100;
+  }
+  
+  /* -- skill row: label column + wrapping tag list -- */
+  .skills-group {
+    display: flex;
+    align-items: center;   /* vertically centers label against the tag block */
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
+  
+  .skills-group + .skills-group {
+    margin-top: 2.5rem;
+  }
   
   .skills-group h2 {
+    flex: 0 0 140px; /* fixed-width label column — adjust to taste */
     text-align: left;
     font-family: var(--font-body);
     font-size: 1.15rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--ink-strong);
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 0.4rem;
-    margin-bottom: 1.25rem;
+    margin: 0;
   }
   
   .skill-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
+    margin: 0;
+    padding: 0;
   }
+  
   .skill-tags li {
     list-style: none;
     border: 1px solid var(--ink);
@@ -244,18 +350,88 @@
     font-size: 0.9rem;
   }
   
-  /* 8. CARDS (experience + projects) ----------------------------------- */
+
+  
+  /* =====================================================================
+     8. EXPERIENCE ACCORDION (.exp-item)
+     ===================================================================== */
+     
+  .experience-group {
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
+  
+  .exp-item {
+    margin-top: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .exp-item summary {
+    cursor: pointer;
+    list-style: none; /* remove default marker */
+    position: relative;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-strong);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.4rem;
+    padding-right: 1.5rem; /* room for the custom +/x arrow */
+    margin-bottom: 1.75rem;
+  }
+  
+  .exp-item summary::-webkit-details-marker {
+    display: none; /* remove default Chrome/Safari arrow */
+  }
+  
+  /* custom "+" that rotates into an "x" on open */
+  .exp-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.2rem;
+    transition: transform 0.2s var(--ease);
+  }
+  
+  .exp-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+  
+  .exp-item p {
+    margin: 0 0 1.5rem;
+    padding-top: 0.25rem;
+  }
+  
+  .exp-date {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.75;
+    margin: 0 0 0.75rem;
+  }
+  #experience .section-title {
+    padding-bottom: clamp(1.5rem, 4vw, 2rem);
+
+  }
+  /* =====================================================================
+     9. CARDS (projects)
+     ===================================================================== */
   .card-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;          /* this centers the last row */
+    justify-content: center; /* centers the last (incomplete) row */
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
   
   .card-container {
     position: relative;
-    flex: 0 1 250px;                 
-    height: 290px;                   
+    flex: 0 1 250px;
+    height: 290px;
   }
   
   .card {
@@ -266,9 +442,9 @@
     background: var(--surface);
     display: flex;
     flex-direction: column;
+    padding: 1.5rem 1.25rem;
     transition: transform 0.3s var(--ease);
     z-index: 2;
-    padding: 1.5rem 1.25rem;   
   }
   
   /* dashed offset border revealed on hover */
@@ -281,33 +457,56 @@
     z-index: 1;
   }
   
-  /* background photo, set per-card via --card-bg inline */
+  /* background photo, set per-card via --card-bg inline style */
   .card::before {
     content: "";
     position: absolute;
     inset: 0;
     background-image: var(--card-bg);
+    background-size: 85%; 
+    background-repeat: no-repeat;
+    background-position: center;
     opacity: 0;
     transition: opacity 0.3s var(--ease);
     z-index: 0;
-    background-size: 85%;        /* was: cover  — lower % = smaller image */
-    background-repeat: no-repeat;
-    background-position: center;
   }
-  .card > * { position: relative; z-index: 1; }
   
-  .card .role, .card .role2 { font-weight: 700; }
+  .card > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* card text */
+  .card .role,
+  .card .role2 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  
   .card .company {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     text-align: center;
-    font-size: 0.95rem;
     margin-top: 0.5rem;
     transition: opacity 0.3s var(--ease);
-
   }
-  .card .card-body { font-size: 0.95rem; margin-top: 0.5rem; text-align: center; }
   
-  /* push the button to the bottom of the card */
-  .card .btn { margin-top: auto; }
+  .card .card-body {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  /* pin the button to the bottom of the card */
+  .card .btn {
+    margin-top: auto;
+  }
+  
   .btn {
     align-self: flex-start;
     display: inline-block;
@@ -321,7 +520,11 @@
     text-decoration: none;
     transition: background 0.2s var(--ease), color 0.2s var(--ease);
   }
-  .btn:hover { background: var(--ink-strong); border-color: var(--ink-strong); }
+  
+  .btn:hover {
+    background: var(--ink-strong);
+    border-color: var(--ink-strong);
+  }
   
   .card .tech {
     display: flex;
@@ -329,47 +532,63 @@
     gap: 0.4rem;
     margin-top: 0.75rem;
   }
+  
   .card .tech span {
     font-size: 0.78rem;
     border: 1px solid var(--ink);
     padding: 0.2rem 0.5rem;
   }
+
+  #projects {
+    padding-top: clamp(1.5rem, 4vw, 2rem);
+  }
+  #projects .section-title {
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  }
   
-  /* hover effects only where a real pointer exists */
+  /* hover effects only where a real pointer exists (skip touch devices) */
   @media (hover: hover) {
-    .card-container:hover .card { transform: translate(-22px, -22px); }
+    .card-container:hover .card         { transform: translate(-22px, -22px); }
     .card-container:hover .card--border { opacity: 1; }
     .card-container:hover .card::before { opacity: 1; }
     .card-container:hover .role2,
-    .card-container:hover .company {
-        opacity: 0;
-    }
+    .card-container:hover .company      { opacity: 0; }
   }
   
-  /* 9. BLOG ------------------------------------------------------------- */
+  
+  /* =====================================================================
+     10. BLOG
+     ===================================================================== */
   .blog-intro {
     text-align: center;
     max-width: 640px;
     margin: 0 auto 2.5rem;
   }
+  
   .blog-list {
     display: grid;
     gap: 1.5rem;
     max-width: 760px;
     margin-inline: auto;
   }
+  
   .post {
     border: var(--line);
     background: var(--surface);
     padding: 1.5rem 1.75rem;
     transition: transform 0.2s var(--ease);
   }
-  .post:hover { transform: translateY(-4px); }
+  
+  .post:hover {
+    transform: translateY(-4px);
+  }
+  
   .post h3 {
     font-family: var(--font-display);
     font-size: 1.4rem;
     text-align: left;
   }
+  
   .post .post-date {
     font-size: 0.8rem;
     letter-spacing: 0.04em;
@@ -377,7 +596,11 @@
     opacity: 0.8;
     margin-top: 0.25rem;
   }
-  .post .post-blurb { margin: 0.75rem 0 1rem; }
+  
+  .post .post-blurb {
+    margin: 0.75rem 0 1rem;
+  }
+  
   .post a.read-more {
     font-weight: 700;
     text-decoration: none;
@@ -385,53 +608,147 @@
     padding-bottom: 1px;
     transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
   }
-  .post a.read-more:hover { color: var(--ink-strong); border-color: var(--ink-strong); }
-  .post a.read-more::after { content: " \2192"; }   /* → */
+  
+  .post a.read-more:hover {
+    color: var(--ink-strong);
+    border-color: var(--ink-strong);
+  }
+  
+  .post a.read-more::after {
+    content: " \2192"; /* → */
+  }
   
   .blog-all {
     text-align: center;
     margin-top: 2.5rem;
   }
   
-  /* 10. FOOTER ---------------------------------------------------------- */
+  
+  /* =====================================================================
+     11. FOOTER
+     ===================================================================== */
   #main-footer {
     border-top: var(--line);
     text-align: center;
     font-size: 0.75rem;
     padding: 1.5rem var(--pad-x);
+    position: relative
   }
+  
   .social-icons {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 0.75rem;
   }
-  .social-icons a { display: inline-flex; transition: transform 0.3s var(--ease); }
-  .social-icons a:hover { transform: translateY(-8px); }
-  .social-icons img { width: 32px; height: 32px; }
   
-  /* 11. MOTION (reveal-on-scroll) -------------------------------------- */
+  .social-icons a {
+    display: inline-flex;
+    transition: transform 0.3s var(--ease);
+  }
+  
+  .social-icons a:hover {
+    transform: translateY(-8px);
+  }
+  
+  .social-icons img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  
+  /* =====================================================================
+     12. MOTION (reveal-on-scroll)
+     ===================================================================== */
   [data-reveal] {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
   }
+  
   [data-reveal].in-view {
     opacity: 1;
     transform: none;
   }
   
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
+    html {
+      scroll-behavior: auto;
+    }
     *, *::before, *::after {
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
     }
-    [data-reveal] { opacity: 1; transform: none; }
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
   }
   
-  /* 12. RESPONSIVE ------------------------------------------------------ */
+  
+  /* =====================================================================
+     13. RESPONSIVE OVERRIDES
+     ===================================================================== */
   @media (max-width: 600px) {
-    .card-container { height: auto; min-height: 320px; }
-    .menu-btn { top: 16px; left: 16px; }
+    .card-container {
+      height: auto;
+      min-height: 320px;
+    }
+  
+    .menu-btn {
+      top: 16px;
+      left: 16px;
+    }
+  
+    .skills-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  
+    .skills-group h2 {
+      flex: none;
+    }
   }
+
+/* =====================================================================
+   14. FLORAL ACCENTS (decorative, non-interactive)
+   ===================================================================== */
+   .section {
+    position: relative;
+    overflow: hidden;   /* keeps each section's floral contained — no bleed into the next section */
+  }
+  
+  .floral {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;       /* softer — these are dense line drawings, full opacity reads heavy */
+    width: 120px;
+  }
+
+  .floral--side-left {
+    margin-top: 20px;
+    left: 1rem;
+    transform: translateY(-50%);
+  }
+  
+  .floral--sm { width: 120px; }
+  .floral--lg { width: 200px; }
+  
+  /* positive insets — sits INSIDE the section, never overflows into neighbors */
+  .floral--tl { top: 1rem;    left: 1rem; }
+  .floral--tr { top: 1rem;    right: 1rem; }
+  .floral--bl { bottom: 1rem; left: 1rem; }
+  .floral--br { bottom: 1rem; right: 1rem; }
+  
+  /* the section a floral sits in needs relative positioning
+     so the floral's absolute coords are section-scoped, not page-scoped */
+  .section { position: relative; }
+  
+  @media (max-width: 600px) {
+    .floral { display: none; } /* keep mobile clean/uncluttered */
+  }
+ 
+
+
