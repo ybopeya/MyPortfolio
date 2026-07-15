@@ -85,6 +85,11 @@ Swap the role, company, and image path to add.
 - GitHub — [@ybopeya](https://github.com/ybopeya)
 - Email — ybopeya2@illinois.edu
 ---
- 
+
+ ## Usage
+
+This code is shared publicly to showcase my work, not as a template.
+It is not licensed for reuse, copying, or redistribution. 
+
 © 2026 Yohali Bopeya. All rights reserved.
  

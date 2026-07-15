@@ -431,7 +431,7 @@
   .card-container {
     position: relative;
     flex: 0 1 250px;
-    height: 290px;
+    height: 300px;
   }
   
   .card {

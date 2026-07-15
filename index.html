@@ -109,32 +109,32 @@
                   <div class="card--border"></div>
                   <div class="card">
                     <h2 class="role">portfolio site</h2>
-                    <p class="card-body">this very website (designed by me). See the repo for build details</p> 
-                     <div class="tech"><span>HTML</span><span>CSS</span><span>Javascript</span></div>
+                    <p class="card-body">this very website, showcasing my portfolio and projects.</p> 
+                    <div class="tech"><span>HTML/CSS</span><span>JS</span></div>
                     <a href="https://github.com/ybopeya/MyPortfolio" class="btn" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                   </div>
                 </div>
-    
+
                 <div class="card-container" data-reveal>
                   <div class="card--border"></div>
                   <div class="card">
-                    <h2 class="role">Project Title</h2>
-                    <p class="card-body">One or two lines on what it does and the problem it solves.</p>
-                    <div class="tech"><span>C++</span><span>Verilog</span></div>
-                    <a href="https://github.com/ybopeya" class="btn" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    <h2 class="role">Lost & Found Application</h2>
+                    <p class="card-body">Web app that helps students locate lost items on campus.</p>
+                    <div class="tech"><span>HTML/CSS</span><span>JS</span><span>Supabase</span></div>
+                    <a href="https://www.youtube.com/watch?v=6lMwkQYfyPYs" class="btn" target="_blank" rel="noopener noreferrer">View Demo</a>
                   </div>
                 </div>
-    
+
                 <div class="card-container" data-reveal>
                   <div class="card--border"></div>
                   <div class="card">
-                    <h2 class="role">Project Title</h2>
-                    <p class="card-body">One or two lines on what it does and the problem it solves.</p>
-                    <div class="tech"><span>Java</span><span>Android</span></div>
-                    <a href="https://github.com/ybopeya" class="btn" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    <h2 class="role">SyncSense</h2>
+                    <p class="card-body">Tool for first-time credit users to understand deferred-interest financing.</p>
+                    <div class="tech"><span>React</span><span>Vite</span><span>JS</span></div>
+                    <a href="https://github.com/ybopeya/SyncSense" class="btn" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                   </div>
                 </div>
-    
+
               </div>
             </div>
           </section>
@@ -198,7 +198,7 @@
         <a href="https://linkedin.com/in/ybopeya" target="_blank" rel="noopener noreferrer"><img src="assets/icons/link-black.png" alt="LinkedIn" /></a>
         <a href="https://github.com/ybopeya" target="_blank" rel="noopener noreferrer"><img src="assets/icons/github.png" alt="GitHub" /></a>
         <a href="mailto:ybopeya2@illinois.edu"><img src="assets/icons/email.png" alt="Email" /></a>
-        <a href="assets/documents/resume.pdf" download="yohali-bopeya-resume.pdf"><img src="assets/icons/resume.png" alt="Resume" /></a>
+        <a href="assets/documents/Resume-July26.pdf" download="yohali-bopeya-resume.pdf"><img src="assets/icons/resume.png" alt="Resume" /></a>
       </div>
       <p>&copy; 2026 Yohali Bopeya. All Rights Reserved.</p>
     </footer>
@@ -210,17 +210,17 @@
     /* ---- Blog posts: add/edit entries here, no HTML needed ---- */
     const SUBSTACK_URL = "https://thehumblebumblebee.substack.com";
     const posts = [
+    {
+        title: "unfolding",
+        date: "July 2026",
+        blurb: "I recall being in elementary school and learning about the life cycle of a monarch butterfly for the first time. The process of a creature releasing enzymes, liquefying its body, and rebuilding an entirely new internal structure sounded unbelievable.",
+        url:  SUBSTACK_URL + "/p/unfolding"
+      },
       {
         title: "to call myself beloved",
         date: "June 2026",
         blurb: "Though the modern age has continued to erode our capabilities for connection, there is one thing that has yet to change about humanity: the desire to be loved.",
         url: SUBSTACK_URL + "/p/to-call-myself-beloved"
-      },
-      {
-        title: "slow down",
-        date: "May 2026",
-        blurb: "i found this quote the other day by Maya Angelou, and I believe it is a testament to the feelings I’ve shared in this post:",
-        url:  SUBSTACK_URL + "/p/slow-down"
       }
     ];
 
@@ -230,7 +230,7 @@
         <h3>${p.title}</h3>
         <p class="post-date">${p.date}</p>
         <p class="post-blurb">${p.blurb}</p>
-        <a class="read-more" href="${p.url}" target="_blank" rel="noopener noreferrer">Read on Substack</a>
+        <a class="read-more" href="${p.url}" target="_blank" rel="noopener noreferrer">Continue reading</a>
       </article>
     `).join("");
 
